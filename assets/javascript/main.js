@@ -1,9 +1,13 @@
 let firstInput = document.querySelector(".input-one");
 let secondInput = document.querySelector(".input-two");
+let fibonacciInput = document.querySelector(".fibonacci-input-element");
 const addButton = document.querySelector(".add-button-element");
 const multiplyButton = document.querySelector(".multiply-button-element");
 const exponentiationButton = document.querySelector(
   ".exponentiation-button-element"
+);
+const fibonacciSequenceButton = document.querySelector(
+  ".fibonacci-button-element"
 );
 
 // Write a function named "add" which takes two arguments (as input variables) and returns their sum.
@@ -11,13 +15,16 @@ const exponentiationButton = document.querySelector(
 // You may use built-in operators in order to finish this kata.
 
 // For example, calling add(2, 4) should return a result of 6.
+let answer = 0;
 function add(x, y) {
-  return +x + +y;
+  let sum = 0;
+  sum += +x + +y;
+  return sum;
 }
 
 addButton.addEventListener("click", function () {
-  let sum = add(firstInput.value, secondInput.value);
-  console.log(sum);
+  answer = add(firstInput.value, secondInput.value);
+  console.log(answer);
 });
 
 // Write a function named "multiply" which takes two arguments (as input variables) and returns their product.
@@ -26,16 +33,16 @@ addButton.addEventListener("click", function () {
 
 // For example, calling multiply(6, 4) should return a result of 24, which could be expressed by adding 6 to itself 4 times:
 function multiply(x, y) {
-  let product;
-  for (let index = 0; index < secondInput; index++) {
-    product = add(firstInput.value, firstInput.value);
+  let product = 0;
+  for (let index = 0; index < y; index++) {
+    product = add(x, product);
   }
   return product;
 }
 
 multiplyButton.addEventListener("click", function () {
-  let product = multiply(firstInput.value, secondInput.value);
-  console.log(product);
+  answer = multiply(firstInput.value, secondInput.value);
+  console.log(answer);
 });
 
 // Write a function named "factorial" which takes a single argument and returns the factorial of that value.
@@ -44,7 +51,18 @@ multiplyButton.addEventListener("click", function () {
 
 // A factorial multiplies a given number by every number below it. For example, "5 factorial" (usually symbolized by 5! in Mathematics) would be:
 
-//code here
+function factorial(x, y) {
+  let exponential = 1;
+  for (let index = 0; index < y; index++) {
+    exponential = multiply(x, exponential);
+  }
+  return exponential;
+}
+
+exponentiationButton.addEventListener("click", function () {
+  answer = factorial(firstInput.value, secondInput.value);
+  console.log(answer);
+});
 
 // Write a function named "Fibonacci" which takes an argument n and returns the nth Fibonacci number.
 
@@ -52,4 +70,22 @@ multiplyButton.addEventListener("click", function () {
 
 // For example, calling fibonacci(8) should return a result of 13. The fibonnaci sequence begins:
 
-//code here
+// let targetNumber = 0;
+// let fibonacciSequenceArray = [0, 1];
+// let arrayLength = fibonacciSequenceArray.length;
+// function Fibonacci(x) {
+//   for (let index = 0; index < x; index++) {
+//     let nextNumber = 0;
+//     nextNumber =
+//       fibonacciSequenceArray[Number(arrayLength)] +
+//       fibonacciSequenceArray[Number(arrayLength) - 1];
+//     fibonacciSequenceArray.push(nextNumber);
+//   }
+//   targetNumber = fibonacciSequenceArray[arrayLength];
+//   return targetNumber;
+// }
+
+// fibonacciSequenceButton.addEventListener("click", function () {
+//   let searchedNumber = Fibonacci(fibonacciSequenceArray.length);
+//   console.log(searchedNumber);
+// });
